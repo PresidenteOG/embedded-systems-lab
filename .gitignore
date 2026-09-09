@@ -7,9 +7,12 @@ __pycache__/
 .vscode/
 *.iml
 
-# Arduino/PlatformIO build output (not used here, kept for safety)
-build/
-.pio/
+# Firmware images — downloaded and built by CI (and by the local run recipe),
+# never committed
+*.bin
+mp.bin
+mp-4m.bin
+firmware-fs.bin
 
 # Wokwi CI token — never commit it. It lives only in the repo's
 # Actions secrets as WOKWI_CLI_TOKEN.

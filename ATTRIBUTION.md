@@ -13,11 +13,15 @@ Both are used unmodified. They sit in the exercise folder because Wokwi loads
 every module from the project directory into the board's filesystem — there is
 no package install step in the simulator.
 
-## MicroPython firmware (`firmware/ESP32_GENERIC-20251209-v1.27.0.bin`)
+## MicroPython firmware
 
-The stock MicroPython build for the generic ESP32, downloaded from
-[micropython.org](https://micropython.org/download/ESP32_GENERIC/). MIT-licensed.
-It is committed so the simulations run without fetching anything.
+The simulations run on the stock MicroPython build for the generic ESP32
+([micropython.org](https://micropython.org/download/ESP32_GENERIC/), MIT). It is
+not committed — CI downloads it and bakes each folder's `.py` files into a
+littlefs partition with
+[`mp-image-tool-esp32`](https://pypi.org/project/mp-image-tool-esp32/) so the
+board boots straight into `main.py`. The same recipe is in the root README for
+running an exercise locally.
 
 ## Wokwi wiring for `09-` and `10-`
 

@@ -3,8 +3,4 @@ version: 1
 author: PresidenteOG
 
 steps:
-  - set-control:
-      part-id: joystick1
-      control: x
-      value: 0.5
   - wait-serial: "y "

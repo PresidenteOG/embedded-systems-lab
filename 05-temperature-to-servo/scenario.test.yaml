@@ -3,8 +3,4 @@ version: 1
 author: PresidenteOG
 
 steps:
-  - set-control:
-      part-id: dht1
-      control: temperature
-      value: 30
   - wait-serial: "-> duty"

@@ -34,10 +34,22 @@ for class, and I have left them.
 
 ## Running an exercise
 
-Each folder has a `diagram.json` and a `wokwi.toml`, so it opens directly in the
-Wokwi simulator (VS Code extension, or paste the folder into wokwi.com). The
-MicroPython firmware is committed under `firmware/`; nothing is downloaded at run
-time.
+Each folder has a `diagram.json`, so the quickest way to see one is to open it on
+[wokwi.com](https://wokwi.com) or in the Wokwi VS Code extension, which handle the
+MicroPython upload for you.
+
+To run one headless (the way CI does), you have to bake the sketch into the
+firmware image first, because `wokwi-cli` boots a bare REPL and does not upload
+`main.py`:
+
+```bash
+cd 03-dht22-rolling-average
+pip install "mp-image-tool-esp32[littlefs]"
+curl -fSL https://micropython.org/resources/firmware/ESP32_GENERIC-20260406-v1.28.0.bin -o mp.bin
+python -c "open('mp-4m.bin','wb').write(open('mp.bin','rb').read().ljust(0x400000, b'\xff'))"
+mp-image-tool-esp32 mp-4m.bin --add vfs=fat:2M:2M --fs mkfs vfs --fs put *.py / -o firmware-fs.bin
+wokwi-cli . --scenario scenario.test.yaml
+```
 
 `01-` and `02-` read their mode from the serial console — type `NORMAL`,
 `EMERGENCIA`, `OUT` (or `FDS` for `02-`) into the serial monitor when it asks.
@@ -50,14 +62,15 @@ used anywhere.
 
 ## Continuous integration
 
-`.github/workflows/wokwi-ci.yml` runs the eight non-MQTT exercises on every push
-through [`wokwi-ci-action`](https://github.com/wokwi/wokwi-ci-action). Each folder
-has a `scenario.test.yaml` that drives the inputs and waits for the serial output
-the exercise is meant to produce. The MQTT exercises are left out — a headless run
-has no broker and no second party to talk to.
+`.github/workflows/wokwi-ci.yml` runs the eight non-MQTT exercises on every push.
+Each job downloads MicroPython, bakes that folder's `.py` files into the image,
+boots it on a simulated ESP32 through
+[`wokwi-ci-action`](https://github.com/wokwi/wokwi-ci-action), and checks the
+serial output against the folder's `scenario.test.yaml`. The MQTT exercises are
+left out — a headless run has no broker and no second party to talk to.
 
 The workflow needs a `WOKWI_CLI_TOKEN` repository secret (Wokwi CI dashboard →
-API token). The badge above is red until that secret is set.
+API token). The badge above stays red until that secret is set.
 
 ## License
 

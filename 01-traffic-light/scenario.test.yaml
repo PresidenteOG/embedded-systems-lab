@@ -4,6 +4,5 @@ author: PresidenteOG
 
 steps:
   - wait-serial: "Seleccion de modo"
-  - write-serial: "OUT
-"
+  - write-serial: [79, 85, 84, 13, 10]
   - wait-serial: "FUERA DE SERVICIO!"
