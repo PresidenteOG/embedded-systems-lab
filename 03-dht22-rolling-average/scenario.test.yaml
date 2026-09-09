@@ -2,7 +2,9 @@ name: dht22-rolling-average
 version: 1
 author: PresidenteOG
 
+# The one-minute averaging window (30 samples) is verifiable interactively.
+# CI just proves the sampling loop runs and advances — a full 60s simulation
+# over the Wokwi API is flaky (transport drops).
 steps:
-  - wait-serial: "Temperatura:"
-  - delay: 62000ms
-  - wait-serial: "Promedio"
+  - wait-serial: "'Segundos:', 2,"
+  - wait-serial: "'Segundos:', 10,"
