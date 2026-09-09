@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "author": "PresidenteOG",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 24.04,
+      "attrs": {
+        "env": "micropython-20231005-v1.21.0"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -54.2,
+      "left": -144.85,
+      "rotate": 270,
+      "attrs": {
+        "value": "1000"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": -157.2,
+      "left": -92.2,
+      "attrs": {
+        "color": "red"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -157.2,
+      "left": -130.6,
+      "attrs": {
+        "color": "yellow"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led3",
+      "top": -157.2,
+      "left": -159.4,
+      "attrs": {
+        "color": "limegreen"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -54.2,
+      "left": -173.65,
+      "rotate": 270,
+      "attrs": {
+        "value": "1000"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": -54.2,
+      "left": -116.05,
+      "rotate": 270,
+      "attrs": {
+        "value": "1000"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "esp:TX",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "esp:RX",
+      "$serialMonitor:TX",
+      "",
+      []
+    ],
+    [
+      "led2:A",
+      "esp:15",
+      "red",
+      [
+        "h307.2",
+        "v316.8"
+      ]
+    ],
+    [
+      "r1:1",
+      "esp:GND.1",
+      "#8f4814",
+      [
+        "v86.4",
+        "h57.6",
+        "v192"
+      ]
+    ],
+    [
+      "r2:1",
+      "esp:GND.1",
+      "#8f4814",
+      [
+        "h28.8",
+        "v172.8"
+      ]
+    ],
+    [
+      "r3:1",
+      "esp:GND.1",
+      "#8f4814",
+      [
+        "h-28.8",
+        "v172.8"
+      ]
+    ],
+    [
+      "led2:C",
+      "r3:2",
+      "red",
+      [
+        "h-9.2",
+        "v37.2"
+      ]
+    ],
+    [
+      "r1:2",
+      "led1:C",
+      "gold",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "r2:2",
+      "led3:C",
+      "green",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "led3:A",
+      "esp:17",
+      "green",
+      [
+        "v19.2",
+        "h345.6",
+        "v220.8"
+      ]
+    ],
+    [
+      "led1:A",
+      "esp:18",
+      "gold",
+      [
+        "v9.6",
+        "h336",
+        "v211.2"
+      ]
+    ]
+  ],
+  "dependencies": {}
+}

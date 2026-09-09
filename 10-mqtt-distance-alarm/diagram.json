@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "author": "PresidenteOG",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 19.2,
+      "left": 4.84,
+      "attrs": {
+        "env": "micropython-20231005-v1.21.0"
+      }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -190.5,
+      "left": -23.3,
+      "attrs": {
+        "distance": "60"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "esp:TX",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "esp:RX",
+      "$serialMonitor:TX",
+      "",
+      []
+    ],
+    [
+      "ultrasonic1:VCC",
+      "esp:3V3",
+      "red",
+      [
+        "v9.6",
+        "h-163.35"
+      ]
+    ],
+    [
+      "ultrasonic1:TRIG",
+      "esp:23",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "ultrasonic1:GND",
+      "esp:GND.2",
+      "black",
+      [
+        "h46.8",
+        "v76.8"
+      ]
+    ],
+    [
+      "esp:21",
+      "ultrasonic1:ECHO",
+      "green",
+      [
+        "h0"
+      ]
+    ]
+  ],
+  "dependencies": {}
+}

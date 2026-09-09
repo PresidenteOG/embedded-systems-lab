@@ -1,0 +1,31 @@
+name: Wokwi CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - 01-traffic-light
+          - 02-traffic-light-lcd
+          - 03-dht22-rolling-average
+          - 04-ldr-window-stats
+          - 05-temperature-to-servo
+          - 06-joystick-dual-servo
+          - 07-ldr-relay-switch
+          - 08-micropython-lcd-thermostat
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Simulate ${{ matrix.project }}
+        uses: wokwi/wokwi-ci-action@v1
+        with:
+          token: ${{ secrets.WOKWI_CLI_TOKEN }}
+          path: ${{ matrix.project }}
+          scenario: scenario.test.yaml
+          timeout: 90000

@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "author": "PresidenteOG",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 86.4,
+      "left": -52.76,
+      "attrs": {
+        "env": "micropython-20231005-v1.21.0"
+      }
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "servo1",
+      "top": -106.6,
+      "left": -113.4,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -114.9,
+      "left": 81,
+      "attrs": {
+        "temperature": "80"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "esp:TX",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "esp:RX",
+      "$serialMonitor:TX",
+      "",
+      []
+    ],
+    [
+      "servo1:PWM",
+      "esp:23",
+      "cyan",
+      [
+        "v57.6",
+        "h77",
+        "v38.4"
+      ]
+    ],
+    [
+      "servo1:V+",
+      "esp:3V3",
+      "red",
+      [
+        "v57.6",
+        "h-38.3",
+        "v19.2"
+      ]
+    ],
+    [
+      "servo1:GND",
+      "esp:GND.1",
+      "black",
+      [
+        "v48",
+        "h-38.4",
+        "v153.6"
+      ]
+    ],
+    [
+      "dht1:GND",
+      "esp:GND.2",
+      "black",
+      [
+        "h115.2",
+        "v115.2"
+      ]
+    ],
+    [
+      "dht1:SDA",
+      "esp:18",
+      "yellow",
+      [
+        "v19.2",
+        "h124.9",
+        "v172.8"
+      ]
+    ],
+    [
+      "dht1:VCC",
+      "esp:5V",
+      "red",
+      [
+        "h-220.8",
+        "v288"
+      ]
+    ]
+  ],
+  "dependencies": {}
+}

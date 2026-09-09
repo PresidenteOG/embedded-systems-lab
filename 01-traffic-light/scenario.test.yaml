@@ -1,0 +1,9 @@
+name: traffic-light
+version: 1
+author: PresidenteOG
+
+steps:
+  - wait-serial: "Seleccion de modo"
+  - write-serial: "OUT
+"
+  - wait-serial: "FUERA DE SERVICIO!"

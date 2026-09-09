@@ -1,0 +1,6 @@
+name: micropython-lcd-thermostat
+version: 1
+author: PresidenteOG
+
+steps:
+  - wait-serial: "Igual!"

@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "author": "PresidenteOG",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": -9.6,
+      "left": 33.64,
+      "attrs": {
+        "env": "micropython-20231005-v1.21.0"
+      }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay1",
+      "top": -141,
+      "left": 32.4,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": -112,
+      "left": -181.6,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [
+      "esp:TX",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "esp:RX",
+      "$serialMonitor:TX",
+      "",
+      []
+    ],
+    [
+      "relay1:GND",
+      "esp:GND.2",
+      "black",
+      [
+        "v9.6",
+        "h38"
+      ]
+    ],
+    [
+      "relay1:VCC",
+      "esp:3V3",
+      "red",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "relay1:IN",
+      "esp:23",
+      "violet",
+      [
+        "h57.4",
+        "v76.8"
+      ]
+    ],
+    [
+      "ldr1:VCC",
+      "esp:3V3",
+      "red",
+      [
+        "h38.4",
+        "v115.2"
+      ]
+    ],
+    [
+      "ldr1:GND",
+      "esp:GND.2",
+      "black",
+      [
+        "h28.8",
+        "v66.8",
+        "h115.2"
+      ]
+    ],
+    [
+      "ldr1:AO",
+      "esp:34",
+      "cyan",
+      [
+        "h19.2",
+        "v66.5"
+      ]
+    ]
+  ],
+  "dependencies": {}
+}

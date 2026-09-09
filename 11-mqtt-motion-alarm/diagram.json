@@ -1,0 +1,146 @@
+{
+  "version": 1,
+  "author": "PresidenteOG",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": -4.76,
+      "attrs": {
+        "env": "micropython-20231227-v1.22.0"
+      }
+    },
+    {
+      "type": "wokwi-neopixel-meter",
+      "id": "meter1",
+      "top": 240,
+      "left": 38.4,
+      "attrs": {
+        "pixels": "16"
+      }
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir1",
+      "top": -72.8,
+      "left": 2.22,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 54,
+      "left": 23,
+      "attrs": {
+        "color": "red"
+      }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 134.4,
+      "left": 0,
+      "rotate": 180,
+      "attrs": {
+        "volume": "0.1"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 100.25,
+      "left": 27.4,
+      "rotate": 180,
+      "attrs": {
+        "value": "1000"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "esp:TX",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "esp:RX",
+      "$serialMonitor:TX",
+      "",
+      []
+    ],
+    [
+      "esp:23",
+      "pir1:OUT",
+      "white",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "pir1:VCC",
+      "esp:3V3",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "esp:GND.2",
+      "pir1:GND",
+      "green",
+      [
+        "h-38.4",
+        "v-9.6"
+      ]
+    ],
+    [
+      "esp:22",
+      "led1:A",
+      "red",
+      [
+        "h-38.4",
+        "v48"
+      ]
+    ],
+    [
+      "esp:GND.3",
+      "r1:1",
+      "#8f4814",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "r1:2",
+      "led1:C",
+      "gold",
+      [
+        "h1.2",
+        "v-9.6"
+      ]
+    ],
+    [
+      "bz1:1",
+      "esp:GND.1",
+      "black",
+      [
+        "v-9.6",
+        "h-48",
+        "v28.8"
+      ]
+    ],
+    [
+      "bz1:2",
+      "esp:13",
+      "red",
+      [
+        "h-28.4",
+        "v28.8"
+      ]
+    ]
+  ],
+  "dependencies": {}
+}

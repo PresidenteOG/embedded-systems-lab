@@ -1,0 +1,18 @@
+# Python bytecode from local linting
+__pycache__/
+*.py[cod]
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Arduino/PlatformIO build output (not used here, kept for safety)
+build/
+.pio/
+
+# Wokwi CI token — never commit it. It lives only in the repo's
+# Actions secrets as WOKWI_CLI_TOKEN.
+*wok_*
+WokwiCI.txt
+.env

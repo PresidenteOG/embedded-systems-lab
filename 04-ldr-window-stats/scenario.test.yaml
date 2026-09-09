@@ -1,0 +1,10 @@
+name: ldr-window-stats
+version: 1
+author: PresidenteOG
+
+steps:
+  - set-control:
+      part-id: ldr1
+      control: lux
+      value: 400
+  - wait-serial: "Valor del sensor de llum"
