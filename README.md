@@ -32,45 +32,53 @@ stalling the main work.
 Comments in the code are in Spanish and Catalan — that is how they were written
 for class, and I have left them.
 
+## What's in each folder
+
+| File | What it is |
+|------|------------|
+| `main.py` | the exercise |
+| `diagram.json` | the wiring — which ESP32 pin connects to which sensor, LED or module |
+| `wokwi.toml` | tells Wokwi which firmware to boot and where the code lives |
+| `scenario.test.yaml` | the serial lines the exercise is expected to print; CI checks against this |
+
 ## Running an exercise
 
-Each folder has a `diagram.json`, so the quickest way to see one is to open it on
-[wokwi.com](https://wokwi.com) or in the Wokwi VS Code extension, which handle the
-MicroPython upload for you.
+Open the folder on [wokwi.com](https://wokwi.com) — drag `main.py` and
+`diagram.json` onto the page — or open it with the Wokwi VS Code extension.
+Either way Wokwi flashes MicroPython and runs `main.py` for you; press play and
+watch the serial monitor.
 
-To run one headless (the way CI does), you have to bake the sketch into the
-firmware image first, because `wokwi-cli` boots a bare REPL and does not upload
-`main.py`:
+`01-` and `02-` wait for you to choose a mode: type `NORMAL`, `EMERGENCIA` or
+`OUT` (`FDS` instead of `OUT` on `02-`) into the serial monitor when it prompts.
 
-```bash
-cd 03-dht22-rolling-average
-pip install "mp-image-tool-esp32[littlefs]"
-curl -fSL https://micropython.org/resources/firmware/ESP32_GENERIC-20260406-v1.28.0.bin -o mp.bin
-python -c "open('mp-4m.bin','wb').write(open('mp.bin','rb').read().ljust(0x400000, b'\xff'))"
-mp-image-tool-esp32 mp-4m.bin --add vfs=fat:2M:2M --fs mkfs vfs --fs put *.py / -o firmware-fs.bin
-wokwi-cli . --scenario scenario.test.yaml
-```
-
-`01-` and `02-` read their mode from the serial console — type `NORMAL`,
-`EMERGENCIA`, `OUT` (or `FDS` for `02-`) into the serial monitor when it asks.
-
-The three MQTT folders (`09-`, `10-`, `11-`) need a broker. They default to a
-local [Mosquitto](https://mosquitto.org/) instance — install it, run `mosquitto -v`,
-and point `MQTT_BROKER` in the sketch at an address the simulator can reach. Each
-of those folders has its own README with the exact commands. No public broker is
-used anywhere.
+The three MQTT folders (`09-`, `10-`, `11-`) also need a broker running. They
+connect to `127.0.0.1:1883` by default — install
+[Mosquitto](https://mosquitto.org/), run `mosquitto -v`, and set `MQTT_BROKER` in
+the sketch to an address the simulator can reach. Each of those folders has its
+own README with the commands. No public broker anywhere.
 
 ## Continuous integration
 
-`.github/workflows/wokwi-ci.yml` runs the eight non-MQTT exercises on every push.
-Each job downloads MicroPython, bakes that folder's `.py` files into the image,
-boots it on a simulated ESP32 through
-[`wokwi-ci-action`](https://github.com/wokwi/wokwi-ci-action), and checks the
-serial output against the folder's `scenario.test.yaml`. The MQTT exercises are
-left out — a headless run has no broker and no second party to talk to.
+Every push runs the 8 non-MQTT exercises through
+[Wokwi's CI action](https://github.com/wokwi/wokwi-ci-action). It boots each one
+on a simulated ESP32 with no UI and compares the serial output, line by line,
+against that folder's `scenario.test.yaml`. If a sketch stops printing what it
+should, the build turns red — that is what the badge at the top of this file
+tracks.
 
-The workflow needs a `WOKWI_CLI_TOKEN` repository secret (Wokwi CI dashboard →
-API token). The badge above stays red until that secret is set.
+One wrinkle worth knowing: Wokwi's headless runner starts MicroPython at an empty
+prompt and doesn't upload `main.py` by itself, so before each run the workflow
+packs the folder's `.py` files into the firmware image and boots that instead.
+The exact steps are in
+[`.github/workflows/wokwi-ci.yml`](.github/workflows/wokwi-ci.yml) — none of it is
+needed to run an exercise the normal way described above.
+
+The MQTT exercises sit out CI: a headless run has no broker and no one on the
+other end to message.
+
+The workflow reads a `WOKWI_CLI_TOKEN` repository secret, generated from the
+[Wokwi CI dashboard](https://wokwi.com/dashboard/ci). The badge stays red until
+that secret is set.
 
 ## License
 
