@@ -15,19 +15,19 @@ stalling the main work.
 
 ## Exercises
 
-| Folder | What it practices | Parts |
-|--------|-------------------|-------|
-| `01-traffic-light` | A three-mode state machine (normal / emergency / out of service) driving a timed LED sequence. Mode is chosen at the serial prompt. | 3 LEDs |
-| `02-traffic-light-lcd` | The same state machine, with a 16x2 I2C LCD spelling out the current mode and light states. | 3 LEDs, I2C 1602 LCD |
-| `03-dht22-rolling-average` | Sampling a DHT22 every 2 s and reporting a rolling average once per minute (30 samples per window). | DHT22 |
-| `04-ldr-window-stats` | Collecting light readings over a 60-sample window, then printing min, mean and max for that window. | Photoresistor |
-| `05-temperature-to-servo` | Mapping a temperature reading onto a servo angle with a linear transform, split across the sub-zero and above-zero ranges. | DHT22, servo |
-| `06-joystick-dual-servo` | Two analog joystick axes scaled to PWM duty for two independent servos. | Analog joystick, 2 servos |
-| `07-ldr-relay-switch` | A light threshold that flips a relay — the "switch on the lamp when it gets dark" exercise. | Photoresistor, relay module |
-| `08-micropython-lcd-thermostat` | Temperature and humidity on an I2C LCD, redrawing the screen only when the formatted text actually changed. | DHT22, I2C 1602 LCD |
-| `09-mqtt-buzzer-control` | A buzzer driven remotely: a JSON message over MQTT sets frequency, repeats, duration and an on/off flag. | Buzzer |
-| `10-mqtt-distance-alarm` | An ultrasonic distance alarm whose threshold and enable flag are set over MQTT, so it retunes without reflashing. | HC-SR04 |
-| `11-mqtt-motion-alarm` | A PIR intrusion alarm that is armed and disarmed over MQTT and publishes its state back. | PIR, buzzer, LED |
+| Folder | What it practices | Parts | Open in Wokwi |
+|--------|-------------------|-------|---------------|
+| `01-traffic-light` | A three-mode state machine (normal / emergency / out of service) driving a timed LED sequence. Mode is chosen at the serial prompt. | 3 LEDs | [Run it](https://wokwi.com/projects/474876180329278465) |
+| `02-traffic-light-lcd` | The same state machine, with a 16x2 I2C LCD spelling out the current mode and light states. | 3 LEDs, I2C 1602 LCD | [Run it](https://wokwi.com/projects/474876701094258689) |
+| `03-dht22-rolling-average` | Sampling a DHT22 every 2 s and reporting a rolling average once per minute (30 samples per window). | DHT22 | [Run it](https://wokwi.com/projects/474876260425823233) |
+| `04-ldr-window-stats` | Collecting light readings over a 60-sample window, then printing min, mean and max for that window. | Photoresistor | [Run it](https://wokwi.com/projects/474876304001509377) |
+| `05-temperature-to-servo` | Mapping a temperature reading onto a servo angle with a linear transform, split across the sub-zero and above-zero ranges. | DHT22, servo | [Run it](https://wokwi.com/projects/474876353837233153) |
+| `06-joystick-dual-servo` | Two analog joystick axes scaled to PWM duty for two independent servos. | Analog joystick, 2 servos | [Run it](https://wokwi.com/projects/474876406916175873) |
+| `07-ldr-relay-switch` | A light threshold that flips a relay — the "switch on the lamp when it gets dark" exercise. | Photoresistor, relay module | [Run it](https://wokwi.com/projects/474876448690411521) |
+| `08-micropython-lcd-thermostat` | Temperature and humidity on an I2C LCD, redrawing the screen only when the formatted text actually changed. | DHT22, I2C 1602 LCD | [Run it](https://wokwi.com/projects/474876915807029249) |
+| `09-mqtt-buzzer-control` | A buzzer driven remotely: a JSON message over MQTT sets frequency, repeats, duration and an on/off flag. | Buzzer | [Run it](https://wokwi.com/projects/397884328047750145) |
+| `10-mqtt-distance-alarm` | An ultrasonic distance alarm whose threshold and enable flag are set over MQTT, so it retunes without reflashing. | HC-SR04 | [Run it](https://wokwi.com/projects/398686142018515969) |
+| `11-mqtt-motion-alarm` | A PIR intrusion alarm that is armed and disarmed over MQTT and publishes its state back. | PIR, buzzer, LED | [Run it](https://wokwi.com/projects/392353697631858689) |
 
 Comments in the code are in Spanish and Catalan — that is how they were written
 for class, and I have left them.
